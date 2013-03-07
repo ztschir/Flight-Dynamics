@@ -1,0 +1,42 @@
+clear; clc;
+% Script to plot the Rate of Climb vs. Airspeed for landing
+
+% Rate of Climb data, these values were given to us by the TA, since ours
+% were off. 
+RC = [-500, -350, -300, -800, -900, -1000];
+%RealRC = [-350, -400, -600, -750, -900, -1000];
+
+% Airspeed data, Taking out step out record since it doesn't fit the plot
+% well and isn't really showing anything needed.
+KnotsToFtPerMinute = 101.268591;
+Airspeed = [120, 100, 90, 90, 80, 75]*KnotsToFtPerMinute;
+
+% Setup
+A               = fliplr(polyfit(Airspeed,RC,2));% Polyfit data to parabola
+vmin            = min(Airspeed);
+vmax            = max(Airspeed);
+V               = 0:1:vmax + 10000;        % Break data into finer segments
+hdot            = A(1) + A(2).*V + A(3).*V.^2;       % hdot for every speed
+vStar           = -A(2) / (2*A(3));
+hdotmin         = A(1) + A(2).*vStar + A(3).*vStar.^2;
+vStar2          = sqrt(A(1) / A(3));
+hdotFAmin       = A(1) + A(2)*vStar2 + A(3)*vStar2^2;
+hdotDivV        = A(1)/vStar2 + A(2) + A(3)*vStar2;
+flightAngleMin  = asind(hdotDivV);
+x               = 0:1:vmax + vmax/4;
+y               = hdotDivV.*x + hdotFAmin/(hdotDivV*vStar2);
+ 
+fprintf('hdot Min = %g (ft/min) at airspeed = %g (ft/min)\n',hdotmin, vStar);
+fprintf('Flight Angle Min = %g degrees at airspeed = %g (ft/min)\n',flightAngleMin, vStar2);
+
+figure;hold on;
+    title('Rate of Climb vs.Airspeed Descent');
+    xlabel('Airspeed (ft/min)');
+    ylabel('Rate of climb (ft/min)');
+    axis([0,vmax + vmax/4, 4*hdotmin, 0]);         % Set Axis
+    scatter(Airspeed,RC,'x');                      % Plot Vel and RC points
+    scatter(vStar,hdotmin,'k', 'filled');          % Plot Min RC point
+    scatter(vStar2,hdotFAmin,'v');                 % Plot Min Flight Angle
+    plot(V,hdot,'k');                              % Plot V and hdot
+    plot(x,y,'m');                                 % Plot Flight Angle line
+hold off;

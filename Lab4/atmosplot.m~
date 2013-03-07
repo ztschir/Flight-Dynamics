@@ -1,0 +1,71 @@
+function [property] = atmosplot()
+%The atomsplot function calculates atmosphereic properties and plots them
+clc;clear all;                  
+
+i = 1;
+
+% Load the Standard Atmosphere reference values
+stdAtm = load('StandardAtmos.mat');
+stdAtm = stdAtm.stdAtmFH;
+height=stdAtm(:,1)
+
+for height
+ height
+ [t,p,rho,sos]=atmos(height);
+ property(i,:)=[height,t,p,rho,sos];
+ i=i+1;
+end
+
+%ERROR=(property-stdAtm)./stdAtm.*100;%            calculates percent error
+ 
+%Plot t, p, rho, and sos 
+figure(1);  
+plot(property(:,2),property(:,1));         
+title ('Altitude vs. Temperature ');
+xlabel('Temperature [K]');           
+ylabel('Altitude [m]');
+ 
+figure(2);  
+plot(property(:,3),property(:,1));         
+title ('Altitude vs. Pressure');
+xlabel('Pressure [Pa]');             
+ylabel('Altitude [m]');
+ 
+figure(3);   
+plot(property(:,4),property(:,1));         
+title( 'Altitude vs. Density');
+xlabel('Density [kg/m^3]');          
+ylabel('Altitude [m]');
+ 
+figure(4);  
+plot(property(:,5),property(:,1));         
+title( 'Altitude vs. Speed of Sound');  
+xlabel('Speed of Sound [m/s]');      
+ylabel('Altitude [m]');
+ 
+%Plot Error of t, p, rho, and sos
+figure(5);  
+plot(ERROR(:,2),property(:,1));   
+title ('Altitude vs. Temperature Error');
+xlabel('Percent error [%]');   
+ylabel('Altitude [m]');
+ 
+figure(6);  
+plot(ERROR(:,3),property(:,1));   
+title ('Altitude vs. Pressure Error');
+xlabel('Percent error [%]');   
+ylabel('Altitude [m]');
+  
+figure(7);  
+plot(ERROR(:,4),property(:,1));   
+title ('Altitude vs. Density Error');
+xlabel('Percent error [%]');   
+ylabel('Altitude [m]');
+ 
+figure(8);  
+plot(ERROR(:,5),property(:,1));   
+title ('Altitude vs. Speed of Sound Error');
+xlabel('Percent error [%]');   
+ylabel('Altitude [m]');
+
+end

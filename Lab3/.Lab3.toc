@@ -1,0 +1,9 @@
+\select@language {english}
+\contentsline {section}{Objectives}{2}
+\contentsline {section}{Procedure}{2}
+\contentsline {section}{Discussion}{3}
+\contentsline {section}{Results}{5}
+\contentsline {section}{Conclusion}{6}
+\contentsline {section}{Recommendations}{7}
+\contentsline {section}{Bibliography}{8}
+\contentsline {section}{Appendix}{8}

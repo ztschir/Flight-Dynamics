@@ -1,0 +1,87 @@
+\documentclass[12pt]{report}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[hypcap]{caption}
+\usepackage{setspace} 
+
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+
+\title{Programming Assignment 1: Atmosphere Drag}
+\author{Zachary Tschirhart \\
+	\small \\
+	\small Department of Aerospace Engineering and Engineering Mechanics \\
+	\small \textbf{ASE 167M (Wed 3:00-4:00)} \\
+	\small Lab Partners: Zachary May, Joshua Eboh, and Brian Huber \\
+	\small
+	\small TA: Noble Hatten}
+
+\date{February 27, 2013}
+
+
+\begin{document}
+\maketitle
+
+
+\tableofcontents
+\pagebreak
+
+\setcounter{secnumdepth}{0}
+
+
+
+
+
+\section{Purpose of the Program}
+\doublespacing
+Purpose of this program is to calculate the atmospheric properties at a given altitude based on the standard atmosphere model. The properties calculated are temperature, pressure, density, and the speed of sound. By using these properties, the flight variables can be can be estimated, namely, the drag on the aircraft. The drag of an aircraft requires the density and speed of sound to be known, which can be estimated using this model.
+
+
+
+
+
+\section{Mathematical Technique}
+\doublespacing
+Math Technique used
+
+
+
+
+
+\section{Program Listing}
+\lstinputlisting{atmos.m}
+
+
+
+
+
+
+\section{Data Runs and Test Cases}
+\doublespacing
+
+\subsection{I/O Results}
+Data runs stuff
+
+\subsection{Plots and Discussion}
+Plots
+
+
+\begin{thebibliography}{0}
+\bibitem{notes} Eduardo Gilden, Greg Holt, Kyle DeMars, George Jacobellis {\em ASE 167M Flight Dynamics Laboratory Flight Simulator Experiments and Computer Projects. s.l. : The University of Texas at Austin Department of Aerospace Engineering}  2012.
+\end{thebibliography}
+\addcontentsline{toc}{section}{Bibliography}
+
+
+
+
+
+\section{Appendix}
+I don't know if this is needed
+
+
+
+\end{document}

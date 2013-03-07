@@ -1,0 +1,23 @@
+% Script to plot the Flight Profile
+
+% Altitude data
+Altitude = [0, 0, 5000, 6000, 5500, 6000, 6500, 6000, 6000, 6000, 6000, ...
+    6000, 6000, 5200, 5000, 4000, 1000, 1000, 900, 800, 0];
+
+% Ground Distance data (Not to scale)
+GroundDist = 0:1:Altitude
+
+plot(Altitude);
+
+
+figure;hold on;
+    axis([0,vmax + vmax/4,0,hdotmax + hdotmax/4]); % Set Axis
+    scatter(Airspeed,RC,'k');                      % Plot Vel and RC points
+    scatter(vStar,hdotmax,'g', 'filled');          % Plot Max RC point
+    scatter(vStar2,hdotFAmax,'m');                 % Plot Max Flight Angle
+    plot(V,hdot,'k');                              % Plot V and hdot
+    plot(x,y,'m');                                 % Plot Flight Angle line
+    title('Rate of Climb vs.Airspeed Ascent');
+    xlabel('Airspeed (ft/min)');
+    ylabel('Rate of climb (ft/min)');
+hold off;
